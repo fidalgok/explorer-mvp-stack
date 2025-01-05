@@ -1,5 +1,7 @@
 import type { Route } from "./+types/home";
 import { Welcome } from "../welcome/welcome";
+import { getOptionalUser } from "~/utils/auth.server";
+
 
 
 export function meta({}: Route.MetaArgs) {
@@ -10,13 +12,10 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export async function loader({request}: Route.LoaderArgs){
-  // mock a user for now
-  const user = {
-    id: "1",
-    name: "Explorer",
-    email: "explorer@example.com",
-  };
-  return {user};
+  // get user id from request
+const user = await getOptionalUser(request);
+ 
+  return user;
 }
 
 export default function Home() {

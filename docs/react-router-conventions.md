@@ -3,6 +3,20 @@ Copied from the [React Router Docs](https://reactrouter.com/start/framework/rout
 
 This section provides code guidelines and app architecture decisions.
 
+**React Router v7 Conventions**
+- All imports should come from the "react-router" package, not from separate packages like "react-router-dom"
+- Example imports:
+  ```typescript
+  import { 
+    Link, 
+    Form, 
+    redirect, 
+    useNavigate, 
+    useRouteLoaderData,
+    // etc...
+  } from "react-router";
+  ```
+
 ### **File Structure**
 
 #### Components
