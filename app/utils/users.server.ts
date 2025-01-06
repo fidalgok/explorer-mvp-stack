@@ -41,11 +41,11 @@ export async function createUser({ id, email, profile }: CreateUserData): Promis
   }
 }
 
-export async function getUserById(id: string): Promise<{ user: User, profile: Profile }> {
+export async function getUserById(id: string): Promise<{ user: User, profile: Profile } | null> {
   const userDoc = await db.collection('users').doc(id).get();
   if (!userDoc.exists) {
-    // this shouldn't happen, but just in case
-    throw new Error('User not found');
+    // this only happens if the user is not found in the database
+    return null;
   }
 
   const profileDoc = await userDoc.ref.collection('profile').doc('main').get();

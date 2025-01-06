@@ -57,6 +57,7 @@ export async function authenticateUser(token: string): Promise<AuthUser> {
             photoURL: user.profile?.photoURL ?? firebaseUser.photoURL,
         };
     } catch (error) {
+
         throw new Error('Authentication failed');
     }
 }

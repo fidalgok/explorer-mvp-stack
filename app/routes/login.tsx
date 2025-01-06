@@ -23,6 +23,7 @@ export async function action({ request }: Route.ActionArgs) {
     const user = await authenticateUser(idToken);
     return createUserSession(user.id, "/");
   } catch (error) {
+   
     return { error: "Authentication failed" };
   }
 }

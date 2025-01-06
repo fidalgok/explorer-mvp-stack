@@ -84,6 +84,8 @@ const resources = [
         />
       </svg>
     ),
+    requiredAuth: true,
+    requiredRole: null,
   },
   {
     href: "https://rmx.as/discord",
@@ -103,20 +105,35 @@ const resources = [
         />
       </svg>
     ),
+    requiredAuth: true,
+    requiredRole: null,
   },
   {
     href: "/about",
     text: "About",
     icon: <div>📖</div>,
+    requiredAuth: false,
+    requiredRole: null,
+  },
+  {
+    href: "/profile",
+    text: "Profile",
+    icon: <div>👤</div>,
+    requiredAuth: true,
+    requiredRole: null,
   },
   {
     href: "/login",
     text: "Login",
     icon: <div>👋</div>,
+    requiredAuth: false,
+    requiredRole: null,
   },
   {
     href: "/logout",
     text: "Logout",
     icon: <div>✌️</div>,
-  }
+    requiredAuth: true,
+    requiredRole: null,
+  },
 ];
