@@ -95,6 +95,20 @@ This template is configured for deployment to Netlify.
 See <https://docs.netlify.com/welcome/add-new-site/> to add this project as a site
 in your Netlify account.
 
+Manual Deployment:
+
+```bash
+netlify deploy --build --prod
+```
+
+Set up as a new site in Netlify
+Follow the prompts to set up your site.
+When done building you'll need to follow the link to your new site.
+Now set up the environment variables in Netlify's dashboard.
+Now you can redeploy your site to Netlify
+Make sure to add the netlify domain to your firebase project in the authentication settings.
+This allows the app to authenticate with firebase.
+
 ## Styling
 
 This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
