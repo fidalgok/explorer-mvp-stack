@@ -1,6 +1,4 @@
 import { useLoaderData } from "react-router";
-import logoDark from "./logo-dark.svg";
-import logoLight from "./logo-light.svg";
 import type { loader } from "~/routes/home";
 
 export function Welcome() {
@@ -8,36 +6,62 @@ export function Welcome() {
   const filteredResources = resources.filter(resource => {
     if(resource.href === '/login' && user) return false;
     if(resource.href === '/logout' && !user) return false;
+    if (resource.requiredAuth && !user) return false;
     return true;
     });
   return (
-    <main className="flex items-center justify-center pt-16 pb-4">
-      <div className="flex-1 flex flex-col items-center gap-16 min-h-0">
-        <header className="flex flex-col items-center gap-9">
-          <div className="w-[500px] max-w-[100vw] p-4">
-            <img
-              src={logoLight}
-              alt="React Router"
-              className="block w-full dark:hidden"
-            />
-            <img
-              src={logoDark}
-              alt="React Router"
-              className="hidden w-full dark:block"
-            />
+    <main className="relative min-h-screen flex items-center justify-center overflow-hidden bg-stone-950">
+      {/* Decorative blurs */}
+      <div className="absolute inset-0 pointer-events-none">
+        <svg width="100%" height="100%" className="absolute inset-0">
+          <defs>
+            <filter id="blurFilter">
+              <feGaussianBlur stdDeviation="50" />
+            </filter>
+          </defs>
+          <circle 
+            cx="40%" 
+            cy="40%" 
+            r="400" 
+            fill="#771EDC" 
+            opacity="0.15" 
+            filter="url(#blurFilter)"
+          />
+          <circle 
+            cx="60%" 
+            cy="60%" 
+            r="400" 
+            fill="#25DFE2" 
+            opacity="0.15" 
+            filter="url(#blurFilter)"
+          />
+        </svg>
+      </div>
+
+      <div className="relative flex-1 flex flex-col items-center gap-16 px-4 py-16">
+        <header className="flex flex-col items-center gap-9 text-center">
+          <div className="w-full max-w-2xl lg:max-w-lvw">
+            <h1 className="text-lg md:text-2xl lg:text-3xl mb-4 font-bold text-slate-50">
+           The Explorer MVP React Router Stack
+            </h1>
+            <p className="text-4xl md:text-6xl lg:text-8xl leading-normal font-bold bg-gradient-to-r from-[#771EDC] to-[#25DFE2] text-transparent bg-clip-text">
+              Let's get started!
+            </p>
           </div>
         </header>
-        <div className="max-w-[300px] w-full space-y-6 px-4">
-          <nav className="rounded-3xl border border-gray-200 p-6 dark:border-gray-700 space-y-4">
-            <p className="leading-6 text-gray-700 dark:text-gray-200 text-center">
-              What&apos;s next {user?.profile?.displayName ?? "Explorer"}?
+
+        <div className="max-w-md w-full space-y-6">
+          <nav className="rounded-3xl border border-gray-800 bg-gray-900/50 backdrop-blur-xl p-8">
+            <p className="text-2xl text-gray-200 text-center mb-6">
+              What's next {user?.profile?.displayName ?? "Explorer"}?
             </p>
-            <ul>
+            <ul className="space-y-2">
               {filteredResources.map(({ href, text, icon }) => (
                 href === '/logout' ? (
                   <li key={href}>
-                    <form action="/logout" method="post" className="">
-                      <button type="submit" className="group hover:cursor-pointer flex items-center gap-3 self-stretch p-3 leading-normal text-blue-700 hover:underline dark:text-blue-500">
+                    <form action="/logout" method="post">
+                      <button type="submit" 
+                        className="group w-full hover:cursor-pointer flex items-center gap-3 p-3 leading-normal text-gray-300 hover:text-white transition-colors">
                         {icon}
                         {text}
                       </button>
@@ -46,16 +70,16 @@ export function Welcome() {
                 ) : (
                   <li key={href}>
                     <a
-                    className="group flex items-center gap-3 self-stretch p-3 leading-normal text-blue-700 hover:underline dark:text-blue-500"
-                    href={href}
-            
-                    rel="noreferrer"
-                  >
-                    {icon}
-                    {text}
-                  </a>
-                </li>
-              )))}
+                      className="group flex items-center gap-3 p-3 leading-normal text-gray-300 hover:text-white transition-colors"
+                      href={href}
+                      rel="noreferrer"
+                    >
+                      {icon}
+                      {text}
+                    </a>
+                  </li>
+                )
+              ))}
             </ul>
           </nav>
         </div>
@@ -84,7 +108,7 @@ const resources = [
         />
       </svg>
     ),
-    requiredAuth: true,
+    requiredAuth: false,
     requiredRole: null,
   },
   {
@@ -105,7 +129,7 @@ const resources = [
         />
       </svg>
     ),
-    requiredAuth: true,
+    requiredAuth: false,
     requiredRole: null,
   },
   {
