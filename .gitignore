@@ -9,3 +9,4 @@
 .netlify
 
 .env
+firebase-config.ts

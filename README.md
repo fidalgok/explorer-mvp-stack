@@ -36,10 +36,12 @@ npm install
 
 3. Set up Firestore:
    - Go to Firestore Database
-   - Create database (start in development mode)
+   - Create database (start in test mode)
    - Set up your security rules
 
 4. Get your Firebase configuration:
+   - Click on the Project Overview
+   - Add a web app
    - Go to Project Settings > General
    - Scroll to "Your apps" and create a web app
    - Copy the Firebase configuration object
