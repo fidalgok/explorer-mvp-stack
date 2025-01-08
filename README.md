@@ -41,10 +41,11 @@ npm install
 
 4. Get your Firebase configuration:
    - Click on the Project Overview
-   - Add a web app
+   - Add a web app and copy the config object to the firebase-config.example.ts file (then rename it to firebase-config.ts)
    - Go to Project Settings > General
-   - Scroll to "Your apps" and create a web app
-   - Copy the Firebase configuration object
+   - Click on the service accounts tab
+   - Generate a new private key for Node.js and download the JSON file locally (keep it secure and do not add it to this repo)
+   - Copy the private key info to the .env file make sure to wrap the private key in quotes
 
 5. Set up required environment variables:
    Create a `.env` file in the root directory:
