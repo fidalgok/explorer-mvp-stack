@@ -1,8 +1,11 @@
 import { initializeApp, cert, getApps } from "firebase-admin/app";
 import { getAuth } from "firebase-admin/auth";
 import { getFirestore } from "firebase-admin/firestore";
+import { init as initEnv } from "./env.server";
 
-if(!getApps().length) {
+initEnv();
+
+if (!getApps().length) {
     initializeApp({
         credential: cert({
             projectId: process.env.FIREBASE_PROJECT_ID,
